@@ -10,6 +10,7 @@ public class TextAdventure {
     public static void main(String[] args) {
         
         GUI gui = new GUI();
+        Tutorial tutorial = new Tutorial();
     }
     
 }

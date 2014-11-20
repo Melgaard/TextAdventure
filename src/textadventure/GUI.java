@@ -92,7 +92,7 @@ public class GUI extends JFrame implements ActionListener{
         JTextField input = new JTextField(25);
         input.requestFocusInWindow();
         input.setBorder(borderText);
-        JLabel HeroName = new JLabel("Hero Name");
+        JLabel HeroName = new JLabel("Sir " + "Hero Name");
         HeroName.setFont(HeroFont);
         
         North.setLayout(new GridLayout(2,1));
