@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,27 +19,29 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
  *
  * @author Sami
  */
-public class GUI extends JFrame implements ActionListener{
-    
+public class GUI extends JFrame implements ActionListener, KeyListener{
+        
     JPanel Center = new JPanel();
     Font InventoryFont = new Font("Times New Roman", Font.PLAIN, 18);
     Font HeroFont = new Font("Old English Text MT", Font.ITALIC+Font.BOLD, 32);
     Border borderText = BorderFactory.createLineBorder(Color.BLACK, 2);
     Border borderInventory = BorderFactory.createLineBorder(Color.BLACK, 2, true);
-   
+    JButton Menu = new JButton("Menu");
+    JButton Tutorial = new JButton("Tutorial");
+    JTextArea Inventory = new JTextArea("Inventory");
+    JTextArea output = new JTextArea("Text Output");
+    JTextField input = new JTextField(25);
+    World gameWorld;
     
     
-    public GUI() 
+    public GUI(World world) 
     {
+        gameWorld = world;
         
         this.setTitle("Text Adventure"); 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,14 +58,12 @@ public class GUI extends JFrame implements ActionListener{
         this.setVisible(true);
     }
     
-
+    //This method creates the buttons in the topright corner as well as the inventory
     public void createButtonsAndInventoryBorderLayout() 
     {
         JPanel East = new JPanel();
         JPanel ButtonFlow = new JPanel();
-        JButton Menu = new JButton("Menu");
-        JButton Tutorial = new JButton("Tutorial");
-        JTextArea Inventory = new JTextArea("Inventory");
+
         
         
         East.setLayout(new BorderLayout());
@@ -85,14 +87,16 @@ public class GUI extends JFrame implements ActionListener{
         
     }
 
+    //This method creates the inputbox and displays the hero name in the top of the JFrame
     public void createTextInputAndHeroLabelGridLayout()
     {
         
         JPanel North = new JPanel();
-        JTextField input = new JTextField(25);
+        
         input.requestFocusInWindow();
         input.setBorder(borderText);
-        JLabel HeroName = new JLabel("Sir " + "Hero Name");
+        input.addKeyListener(this);
+        JLabel HeroName = new JLabel("Sir Hero " + gameWorld.getHeroName());
         HeroName.setFont(HeroFont);
         
         North.setLayout(new GridLayout(2,1));
@@ -102,10 +106,10 @@ public class GUI extends JFrame implements ActionListener{
         Center.add(North, BorderLayout.NORTH);
     }
     
+    //This method creates the textoutputbox in the format of a JScrollPane 
     public void createTextOutput()
-    {
+    {        
         
-        JTextArea output = new JTextArea("Text Output");
         output.setEditable(false);
         
         JScrollPane outputScroll = new JScrollPane(output);
@@ -114,8 +118,39 @@ public class GUI extends JFrame implements ActionListener{
         
     }
     
+    //This ActionListener respectively opens the tutorial and the ingame menu
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e.getSource() == Tutorial)
+        {
+            Tutorial t = new Tutorial();
+        }
+        if (e.getSource() == Menu)
+        {
+            Menu m = new Menu();
+        }
+    }
+    
+    //This KeyListener sends the text typed in the inputbox as a string when enter is pressed
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            
+            String command  = input.getText().toLowerCase();
+            String response = text.inputAction(gameWorld.getHeroPosition(), command, command);
+            
+            
+        }
+    }
+    
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
     }
 }

@@ -8,8 +8,11 @@ import java.util.ArrayList;
  * @author Elinor
  */
 public class Room implements Serializable{
-    private int Id;
+    private int Id;    
     private ArrayList<Item> Contain = new ArrayList<Item>();
+    
+    
+    
     public Room(int Id){
         this.Id = Id;
     }  
@@ -20,29 +23,19 @@ public class Room implements Serializable{
         return Id;
     }
     
-    public String CheckTextInput(String UserActionInput){
+    public void checkTextInput(String UserActionInput){
         
-        switch (UserActionInput){
-            case "1": 
-                
-               System.out.println("text output");
-                ChangeRoomVariables();
-                ChangeHeroVariables();
-                break;
-            case "2":
-                
-                break;
-
-            default:
-                
-                System.out.println("You cant do that");
-                BackToInput();
-                
-                        
-                     
-            
-        }
-        return null;
+        
+        
+        String[] command = UserActionInput.split(" ");
+        if(command.length!=2){throw new IllegalArgumentException();}
+        String action = command[0];
+        String object = command[1];
+        
+        
+        GUI.addTextOutput(text.inputAction(Id, action, object));
+        
+       
     }
     
 }

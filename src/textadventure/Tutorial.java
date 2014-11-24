@@ -10,7 +10,7 @@ public class Tutorial extends JOptionPane {
     
     public Tutorial(){
         
-
+        //When the tutorial is class is created it creates a JOptionPane with tutorial text and a ok/close button
         JOptionPane.showMessageDialog(this,
                     "Welcome to the tutorial "
                 + "\nThis game is a text based adventure game and it is played by writing commands in the input field"
