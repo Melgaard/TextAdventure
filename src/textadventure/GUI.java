@@ -38,7 +38,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
     JTextArea output = new JTextArea("Text Output");
     JTextField input = new JTextField(25);
     World gameWorld;
-    String wholeStory = text.getIntroText();
+    String wholeStory = text.getIntroText() + "\n" + text.getRoom1IntroText();
     
     
     public GUI(World world) 

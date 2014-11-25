@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class World implements Serializable{
     
     private final String heroName;
-    private int heroPosition;
+    private int heroPosition = 1;
     
     private ArrayList<Room> Containroom = new ArrayList<Room>();
     

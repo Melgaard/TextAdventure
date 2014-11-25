@@ -74,7 +74,7 @@ class text {
                     break;
                 default:
 
-                    System.out.println("You cant do that");                    
+                    return "You cant do that";                    
 
             }
             
@@ -93,4 +93,7 @@ class text {
         return introText;
     }
     
+    public static String getRoom1IntroText(){
+        return room1IntroText;
+    }
 }
