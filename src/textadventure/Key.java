@@ -2,16 +2,18 @@ package textadventure;
 
 
 public class Key extends Item {
-    private int Str;
+    private String doorFit;
     
-    public Key (int weight, String name, int str){
+    public Key (int weight, String name, String doorFit){
+        
       super(weight, name);
-      this.Str = str;
+      this.doorFit = doorFit;
+      
     }
     
-    public int getStr()
+    public String getStr()
     {
-        return Str;
+        return doorFit;
     }
     
 }

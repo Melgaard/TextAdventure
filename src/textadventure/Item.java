@@ -9,10 +9,15 @@ import java.io.Serializable;
 public class Item implements Serializable {
     private int weight;
     private String name;
+    
+    
     public Item(int weight, String name){
       this.weight = weight;
       this.name = name;
     }
+    
+    
+    //Getters and setters
     public String getName(){
         return name;
     }

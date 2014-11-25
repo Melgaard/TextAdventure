@@ -1,6 +1,7 @@
 package textadventure;
 
 public class Light extends Item {
+    
     private int Str;
     
     public Light (int weight, String name, int str){

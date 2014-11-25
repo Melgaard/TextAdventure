@@ -11,12 +11,23 @@ public class World implements Serializable{
     
     private final String heroName;
     private int heroPosition = 1;
+    Hero sir;
+    Room foyer;
+    Room basement;
+    Room kitchen;
+    Room hallway;
+    Room bar;
+    Room library;
+    Room throneRoom;
     
     private ArrayList<Room> Containroom = new ArrayList<Room>();
     
     //Constructor
     public World(String name){
         this.heroName = name;
+        
+        sir = new Hero(heroName);
+        
     }
     
     //Methods
