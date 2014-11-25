@@ -23,19 +23,5 @@ public class Room implements Serializable{
         return Id;
     }
     
-    public void checkTextInput(String UserActionInput){
-        
-        
-        
-        String[] command = UserActionInput.split(" ");
-        if(command.length!=2){throw new IllegalArgumentException();}
-        String action = command[0];
-        String object = command[1];
-        
-        
-        GUI.addTextOutput(text.inputAction(Id, action, object));
-        
-       
-    }
     
 }

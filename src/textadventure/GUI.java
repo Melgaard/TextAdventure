@@ -37,6 +37,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
     JTextArea output = new JTextArea("Text Output");
     JTextField input = new JTextField(25);
     World gameWorld;
+    String wholeStory = text.getIntroText();
     
     
     public GUI(World world) 
@@ -109,9 +110,8 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
     //This method creates the textoutputbox in the format of a JScrollPane 
     public void createTextOutput()
     {        
-        
-        output.setEditable(false);
-        
+                      
+        output.setEditable(false);               
         JScrollPane outputScroll = new JScrollPane(output);
         outputScroll.setBorder(borderText);
         Center.add(outputScroll, BorderLayout.CENTER);
@@ -138,8 +138,10 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
         {
             
             String command  = input.getText().toLowerCase();
-            String response = text.inputAction(gameWorld.getHeroPosition(), command, command);
-            
+            String response = text.inputAction(gameWorld.getHeroPosition(), command,gameWorld);
+            input.setText("");
+            wholeStory = wholeStory + command + "\n" + response + "\n";
+            output.setText(wholeStory);
             
         }
     }

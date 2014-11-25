@@ -9,24 +9,28 @@ import java.util.ArrayList;
  */
 public class World implements Serializable{
     
-    private String heroName;
+    private final String heroName;
     private int heroPosition;
     
     private ArrayList<Room> Containroom = new ArrayList<Room>();
     
+    //Constructor
     public World(String name){
         this.heroName = name;
     }
     
+    //Methods
     public void addRoom(Room R){
         Containroom.add(R);
     } 
 
-    ArrayList<Room> returnRoom() {
-        return Containroom;
-    }
+    
     
     //Getters and setters
+    
+    public ArrayList<Room> getRoomArrayList() {
+        return Containroom;
+    }
     
     public String getHeroName(){
         return heroName;       

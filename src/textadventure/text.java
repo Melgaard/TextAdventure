@@ -6,6 +6,8 @@ package textadventure;
  */
 class text {
     
+    private static String introText;
+    
     private static String room1IntroText;
     private static String room2IntroText;
     private static String room3IntroText;
@@ -14,8 +16,12 @@ class text {
     private static String room6IntroText;
     private static String room7IntroText;
 
-    public static String inputAction(int roomID, String action, String object, World gameWorld) {
+    public static String inputAction(int roomID, String userInput, World gameWorld) {
         
+        String[] command = userInput.split(" ");
+        if(command.length!=2){throw new IllegalArgumentException();}
+        String action = command[0];
+        String object = command[1];
         
         
         if (roomID == 1){
@@ -48,9 +54,9 @@ class text {
                     break;
                 case "Fight":
 
+                    return "There is nothing to fight";
 
-
-                    break;
+                    
                 case "Use":
 
 
@@ -78,7 +84,13 @@ class text {
         }
            
         
-        
+        return null;
+    }
+    
+    //Getters og Setters
+    
+    public static String getIntroText(){
+        return introText;
     }
     
 }
