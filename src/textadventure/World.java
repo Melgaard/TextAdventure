@@ -19,6 +19,13 @@ public class World implements Serializable{
     Room bar;
     Room library;
     Room throneRoom;
+    Key darkness;
+    Key throne;
+    Weapon knife;
+    Weapon sword;
+    Weapon spellbook;
+    Light lantern;
+    
     
     private ArrayList<Room> Containroom = new ArrayList<Room>();
     
