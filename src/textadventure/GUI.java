@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import javax.swing.border.Border;
 
 
@@ -111,8 +112,14 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
     public void createTextOutput()
     {        
                       
-        output.setEditable(false);               
+        output.setEditable(false);  
+        output.setText(wholeStory);
+        output.setLineWrap(true);
+        output.setWrapStyleWord(true);
+        
         JScrollPane outputScroll = new JScrollPane(output);
+        outputScroll.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+
         outputScroll.setBorder(borderText);
         Center.add(outputScroll, BorderLayout.CENTER);
         
@@ -138,9 +145,9 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
         {
             
             String command  = input.getText().toLowerCase();
-            String response = text.inputAction(gameWorld.getHeroPosition(), command,gameWorld);
+            String response = text.inputAction(gameWorld.getHeroPosition(), command, gameWorld);
             input.setText("");
-            wholeStory = wholeStory + command + "\n" + response + "\n";
+            wholeStory = wholeStory + " -" + command + "\n" + response + "\n";
             output.setText(wholeStory);
             
         }
