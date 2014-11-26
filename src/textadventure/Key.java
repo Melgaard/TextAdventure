@@ -11,7 +11,7 @@ public class Key extends Item {
       
     }
     
-    public String getStr()
+    public String getDoor()
     {
         return doorFit;
     }

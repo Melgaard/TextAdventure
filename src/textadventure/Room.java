@@ -8,17 +8,29 @@ import java.util.ArrayList;
  * @author Elinor
  */
 public class Room implements Serializable{
-    private int Id;    
+    private final int Id;    
     private ArrayList<Item> Contain = new ArrayList<Item>();
     
+    //Constructor
+    public Room(int id){
+        
+        Id = id;
+        
+    }
     
-    
-    public Room(int Id){
-        this.Id = Id;
-    }  
+    //Methods  
     public void addItem (Item I){
         Contain.add(I);
-    } 
+    }
+    
+    public void removeItem (Item I){
+        
+        Contain.remove(I);
+        
+    }
+    
+    
+    //Getters
     public int returnId(){
         return Id;
     }
