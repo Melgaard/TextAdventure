@@ -56,9 +56,12 @@ public class Menu extends JFrame implements ActionListener {
             try {
                 String name = JOptionPane.showInputDialog(this, "What is your name");
 
-                if (name.isEmpty()) {
+                if (name.length() > 0) {
 
                     World world = new World(name);
+                    TextArchive.setHeroName(name);
+                    System.out.println(name);
+                    System.out.println(TextArchive.getHeroName());
                     GUI gui = new GUI(world);
 
                 }

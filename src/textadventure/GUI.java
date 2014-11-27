@@ -38,11 +38,12 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
     JTextArea output = new JTextArea("Text Output");
     JTextField input = new JTextField(25);
     World gameWorld;
-    String wholeStory = text.getIntroText() + "\n" + text.getRoom1IntroText();
+    String wholeStory;
     
     
     public GUI(World world) 
     {
+        wholeStory = TextArchive.getIntroText() + "\n" + TextArchive.getRoom1IntroText();
         gameWorld = world;
         
         this.setTitle("Text Adventure"); 
@@ -146,7 +147,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
         {
             
             String command  = input.getText().toLowerCase();
-            String response = text.inputAction(gameWorld.getHeroPosition(), command, gameWorld);
+            String response = TextArchive.inputAction(gameWorld.getHeroPosition(), command, gameWorld);
             input.setText("");
             wholeStory = wholeStory + " -" + command + "\n" + response + "\n";
             output.setText(wholeStory);
