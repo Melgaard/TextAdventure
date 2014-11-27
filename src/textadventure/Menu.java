@@ -52,14 +52,31 @@ public class Menu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         
-        if (ae.getSource() == newGameButton){
-            String name = JOptionPane.showInputDialog(this, "What is your name");
-            World world = new World(name);
-            GUI gui = new GUI(world);
+        if (ae.getSource() == newGameButton) {
+            try {
+                String name = JOptionPane.showInputDialog(this, "What is your name");
+
+                if (name.isEmpty()) {
+
+                    World world = new World(name);
+                    GUI gui = new GUI(world);
+
+                }
+            } catch (Exception NullPointerException) {
+                System.out.println("NullPointerException caught in cancel function");
+            }
             this.dispose();
         }
         else if (ae.getSource() == loadGameButton){
+                    
+            Save s = new Save();
             
+            GUI gui = new GUI(s.getGame());
+            gui.wholeStory = s.getGame().wholeStory;
+            gui.output.setText(gui.wholeStory);
+            
+            this.dispose();
+            s = null;   
         }
         else if (ae.getSource() == tutorialButton){
             Tutorial tutorial = new Tutorial();

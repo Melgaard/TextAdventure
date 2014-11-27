@@ -11,6 +11,9 @@ public class World implements Serializable{
     
     private final String heroName;
     private int heroPosition = 1;
+    
+    String wholeStory;
+    
     Hero sir;
     Room foyer;
     Room basement;

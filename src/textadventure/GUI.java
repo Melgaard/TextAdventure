@@ -134,7 +134,8 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
         }
         if (e.getSource() == Menu)
         {
-            Menu m = new Menu();
+            this.setVisible(false);
+            InGameMenu m = new InGameMenu(this);
         }
     }
     
@@ -149,6 +150,9 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
             input.setText("");
             wholeStory = wholeStory + " -" + command + "\n" + response + "\n";
             output.setText(wholeStory);
+            gameWorld.wholeStory = this.wholeStory;
+            updateInventory();
+            
             
         }
     }
@@ -160,6 +164,12 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
     
     @Override
     public void keyTyped(KeyEvent e) {
+        
+    }
+    
+    public void updateInventory()
+    {
+        Inventory.setText(gameWorld.sir.getInventoryString());
         
     }
 }

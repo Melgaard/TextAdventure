@@ -1,8 +1,7 @@
 package textadventure;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,4 +57,42 @@ public class Save {
             }
         }
     }
+    
+    public void saveWorldCheck(World world) {
+        FileOutputStream fileOut = null;
+        ObjectOutputStream out = null;
+
+        int overwriteAnswer = JOptionPane.showConfirmDialog(null, "Do you want to overwrite any current save");
+        
+        if (overwriteAnswer == 0) {
+
+            try {
+                File file = new File(fileName);
+
+                file.createNewFile();
+
+                fileOut = new FileOutputStream(fileName, false);
+                out = new ObjectOutputStream(fileOut);
+
+                out.writeObject(world);
+            } catch (IOException i) {
+                i.printStackTrace();
+            } finally {
+                try {
+                    out.close();
+                    fileOut.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        if (overwriteAnswer == 1){
+            
+        }
+        
+        
+        
+    }
+    
 }
