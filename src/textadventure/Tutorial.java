@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Blotto
+ * @author Melgaard, Sami, Tobias
  */
 public class Tutorial extends JOptionPane {
     

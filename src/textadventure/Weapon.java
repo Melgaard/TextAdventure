@@ -2,7 +2,7 @@ package textadventure;
 
 /**
  *
- * @author Blotto
+ * @author Elinor
  */
 public class Weapon extends Item {
     private final int Str;

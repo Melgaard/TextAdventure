@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Blotto
+ * @author Melgaard
  */
 public class Hero implements Serializable {
     

@@ -2,7 +2,7 @@ package textadventure;
 
 /**
  *
- * @author Blotto
+ * @author Melgaard, Tobias
  */
 class TextArchive {
 

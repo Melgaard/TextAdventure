@@ -1,5 +1,9 @@
 package textadventure;
 
+/**
+ *
+ * @author Elinor
+ */
 
 public class Key extends Item {
     private final String doorFit;

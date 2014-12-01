@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Blotto
+ * @author Sami, Melgaard
  */
 public class Menu extends JFrame implements ActionListener {
 

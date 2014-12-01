@@ -1,5 +1,10 @@
 package textadventure;
 
+/**
+ *
+ * @author Elinor
+ */
+
 public class Light extends Item {
     
     private final int LightStr;
