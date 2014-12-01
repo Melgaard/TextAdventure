@@ -7,8 +7,8 @@ import java.io.Serializable;
  * @author Elinor
  */
 public class Item implements Serializable {
-    private int weight;
-    private String name;
+    private final int weight;
+    private final String name;
     
     
     public Item(int weight, String name){

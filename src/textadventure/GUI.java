@@ -48,7 +48,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
         
         this.setTitle("Text Adventure"); 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 500);
+        this.setSize(1000, 500);
         this.setResizable(true);
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
@@ -149,10 +149,14 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
             String command  = input.getText().toLowerCase();
             String response = TextArchive.inputAction(gameWorld.getHeroPosition(), command, gameWorld);
             input.setText("");
-            wholeStory = wholeStory + " -" + command + "\n" + response + "\n";
+            if (gameWorld.sir.getHeroAlive() == false){
+                input.setEditable(false);
+            }
+            wholeStory = wholeStory + "\n" + " -" + command + "\n" + response;
             output.setText(wholeStory);
             gameWorld.wholeStory = this.wholeStory;
             updateInventory();
+            
             
             
         }

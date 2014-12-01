@@ -5,7 +5,8 @@ package textadventure;
  * @author Blotto
  */
 public class Weapon extends Item {
-    private int Str;
+    private final int Str;
+    
     
     public Weapon (int weight, String name, int str){
       super(weight, name);

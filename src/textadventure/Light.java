@@ -2,16 +2,16 @@ package textadventure;
 
 public class Light extends Item {
     
-    private int Str;
+    private final int LightStr;
     
     public Light (int weight, String name, int str){
       super(weight, name);
-      this.Str = str;
+      this.LightStr = str;
     }
     
-    public int getStr()
+    public int getLightStr()
     {
-        return Str;
+        return LightStr;
     }
     
 }

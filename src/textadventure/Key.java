@@ -2,7 +2,7 @@ package textadventure;
 
 
 public class Key extends Item {
-    private String doorFit;
+    private final String doorFit;
     
     public Key (int weight, String name, String doorFit){
         

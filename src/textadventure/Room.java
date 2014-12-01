@@ -35,5 +35,9 @@ public class Room implements Serializable{
         return Id;
     }
     
+    public ArrayList getArrayList(){
+        return Contain;
+    }
+    
     
 }
