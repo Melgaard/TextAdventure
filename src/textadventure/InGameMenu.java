@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import static java.lang.System.exit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -68,7 +69,19 @@ public class InGameMenu extends JFrame implements ActionListener {
             
         }
         else if (ae.getSource() == exitButton){
+            int answer = JOptionPane.showConfirmDialog(this, "Do you want to save first");
+            if (answer == 0){
+                Save s = new Save();
+            
+            s.saveWorld(gui.gameWorld);
             exit(0);
+            }
+            else if (answer == 1){
+            exit(0);
+            }
+            else if (answer == 2){
+                
+            }
         }
         
         

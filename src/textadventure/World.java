@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Melgaard
+ * @author Melgaard, Elinor
  */
 public class World implements Serializable {
 
