@@ -320,7 +320,8 @@ class TextArchive {
                                 return "You already took a lantern";
                             }
 
-                        case "drawers":
+                        case "silver":
+                        case "silverware":
                             if (gameWorld.getRoom3DrawersSearched()) {
                                 return "You are not fighting a werewolf, so leave it be!";
                             } else {

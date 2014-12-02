@@ -60,8 +60,8 @@ public class Menu extends JFrame implements ActionListener {
 
                     World world = new World(name);
                     TextArchive.setHeroName(name);
-                    System.out.println(name);
-                    System.out.println(TextArchive.getHeroName());
+//                    System.out.println(name);
+//                    System.out.println(TextArchive.getHeroName());
                     GUI gui = new GUI(world);
 
                 }
