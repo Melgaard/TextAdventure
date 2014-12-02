@@ -47,7 +47,8 @@ class TextArchive {
             + "Over the bar you see an old banner hanging. In the opposite side of the room you see a door.";
     private static final String room6IntroText
             = "You enter the room and to your big regret it is an old dusty library filled with tons of high shelves filled with books.\n"
-            + "In the middle of the room there is a little table with a giant book on it.";
+            + "In the middle of the room there is a little table "
+            + "next to it stands a pedistal with a giant book on it.";
     private static final String room7IntroText
             = "You enter the room and see your father tied up on his throne. He seems to be unconscious.\n"
             + "From behind the chair you see a shadow. Your sister walks forward, grinning.\n"
@@ -63,16 +64,18 @@ class TextArchive {
 
         String action;
         String object;
-        
-        try{String[] command = userInput.split(" ");
-        if (command.length != 2) {
-            throw new IllegalArgumentException();
+
+        try {
+            String[] command = userInput.split(" ");
+            if (command.length != 2) {
+                throw new IllegalArgumentException();
+            }
+            action = command[0];
+            object = command[1];
+        } catch (Exception IllegalArgumentException) {
+            return "You must write 2 words";
         }
-        action = command[0];
-        object = command[1];
-        }catch (Exception IllegalArgumentException){            
-            return "You must write 2 words";}
-        
+
         if (roomID == 1) {
 
             switch (action) {
@@ -596,8 +599,9 @@ class TextArchive {
                                 return "You go through all the rows of the shelves. One of them is stuck and you try to pry it out, but with no luck. \n"
                                         + "It is probably not interesting anyways.";
                             }
+                        case "pedistal":
                         case "table":
-                            return "You look at the giant book which lies on the table.\n"
+                            return "You look at the giant book which is on the pedistal next to the table.\n"
                                     + "It must have at least 2000 pages in it. The cover reads \"Magic for dummies: Get fit!\".\n"
                                     + "On the table you see a little key. That must be the key to the throneroom!";
 
@@ -610,10 +614,14 @@ class TextArchive {
                         case "book":
                         case "giantbook":
 
-                            gameWorld.library.getArrayList().remove(gameWorld.spellbook);
-                            gameWorld.sir.addItem(gameWorld.spellbook);
-                            return "You look into the book and you get this tingling feeling in your arms. You keep reading and in a split second your arms grows twice their normal size!\n"
-                                    + "You gain 3 Strength Points!";
+                            if (gameWorld.sir.getInventoryArray().contains(gameWorld.spellbook)) {
+                                return "You have already taken the spellbook!";
+                            } else {
+                                gameWorld.library.getArrayList().remove(gameWorld.spellbook);
+                                gameWorld.sir.addItem(gameWorld.spellbook);
+                                return "You look into the book and you get this tingling feeling in your arms. You keep reading and in a split second your arms grows twice their normal size!\n"
+                                        + "You gain 3 Strength Points!";
+                            }
 
                         case "key":
                             gameWorld.library.getArrayList().remove(gameWorld.throne);
@@ -687,7 +695,7 @@ class TextArchive {
                                 + "Sir Hero somewhat succeded his mission. The castle is partly his, but he was \"Unable\" to save his father from a horrible fate. \n"
                                 + "The castle is shared by the siblings. Even through their differences, they manage to keep peace between them.";
                     } else if (gameWorld.sir.getHeroStrenght() > 5) {
-                        gameWorld.sir.setHeroAlive(false);                        
+                        gameWorld.sir.setHeroAlive(false);
                         return "Mr. Badguy strikes a deadly blow against you, but you dodged it. \n"
                                 + "You push her to the floor and give her the final strike.\n"
                                 + "Before the last sign of life leaves her eyes, she manages to say \"I hate you\".\n"
