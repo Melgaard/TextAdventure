@@ -37,6 +37,7 @@ class TextArchive {
             + "There is doors in every direction. Over in the corner you see a knights armor on display. It belongs to your dad.";
     private static final String room4IntroTextActivated
             = "As you enter the room you are shocked. The armor you saw in the corner now stands before the northen door."
+            + "He is blocking the door and looks ready to fight!"
             + "The other doors are not blocked though";
     private static final String room4IntroTextDefeated
             = "Your fathers armor is lying scattered on the floor, you hope it will not rise again"
@@ -47,7 +48,7 @@ class TextArchive {
             + "Over the bar you see an old banner hanging. In the opposite side of the room you see a door.";
     private static final String room6IntroText
             = "You enter the room and to your big regret it is an old dusty library filled with tons of high shelves filled with books.\n"
-            + "In the middle of the room there is a little table "
+            + "In the middle of the room there is a little table, with piles of books and papers on it"
             + "next to it stands a pedistal with a giant book on it.";
     private static final String room7IntroText
             = "You enter the room and see your father tied up on his throne. He seems to be unconscious.\n"
@@ -80,6 +81,8 @@ class TextArchive {
 
             switch (action) {
                 case "move":
+                case "walk":
+                case "go":
 
                     switch (object) {
                         case "north":
@@ -118,6 +121,7 @@ class TextArchive {
                     return "You cant do that";
 
                 case "search":
+                case "look":
 
                     if (object.equals("painting")) {
 
@@ -128,6 +132,8 @@ class TextArchive {
                     }
 
                 case "take":
+                case "loot":
+                case "get":
 
                     return "You cant do that";
 
@@ -142,6 +148,8 @@ class TextArchive {
 
             switch (action) {
                 case "move":
+                case "walk":
+                case "go":
 
                     switch (object) {
                         case "north":
@@ -206,6 +214,7 @@ class TextArchive {
                     }
 
                 case "search":
+                case "look":
 
                     if (gameWorld.sir.getInventoryArray().contains(gameWorld.lantern)) {
                         switch (object) {
@@ -235,10 +244,20 @@ class TextArchive {
                     }
 
                 case "take":
+                case "loot":
+                case "get":
 
                     if (gameWorld.sir.getInventoryArray().contains(gameWorld.lantern)) {
 
-                        return "You cant do that";
+                        switch (object) {
+                            case "rat":
+
+                                if (gameWorld.sir.getInventoryArray().contains(gameWorld.knife)) {
+                                    return "You cut the rat open and guts spill all over. You have no idea why you just did that or what you hoped to achieve! You leave it on the floor.";
+                                } else {
+                                    return "You see nothing interesting.";
+                                }
+                        }
 
                     } else {
                         gameWorld.sir.setHeroAlive(false);
@@ -257,6 +276,8 @@ class TextArchive {
 
             switch (action) {
                 case "move":
+                case "walk":
+                case "go":
 
                     switch (object) {
                         case "north":
@@ -290,6 +311,7 @@ class TextArchive {
                     return "You cant do that";
 
                 case "search":
+                case "look":
 
                     switch (object) {
 
@@ -310,6 +332,8 @@ class TextArchive {
                     }
 
                 case "take":
+                case "loot":
+                case "get":
 
                     switch (object) {
 
@@ -353,13 +377,17 @@ class TextArchive {
 
             switch (action) {
                 case "move":
+                case "walk":
+                case "go":
 
                     switch (object) {
                         case "north":
 
-                            if (gameWorld.sir.getInventoryArray().contains(gameWorld.throne)) {
+                            if (gameWorld.sir.getInventoryArray().contains(gameWorld.throne) && !gameWorld.getRoom4KnightActivated().equals("activated")) {
                                 gameWorld.setHeroPosition(7);
                                 return room7IntroText;
+                            } else if (gameWorld.getRoom4KnightActivated().equals("activated")) {
+                                return "You cant get past the knight, you must defeat him!";
                             } else {
                                 return "The door is locked! It opens to the throneroom and the chances are that your father is held captive in there. "
                                         + "You need to find a way in!";
@@ -424,6 +452,7 @@ class TextArchive {
                     return "You cant do that";
 
                 case "search":
+                case "look":
 
                     switch (object) {
                         case "knight":
@@ -442,6 +471,8 @@ class TextArchive {
                     }
 
                 case "take":
+                case "loot":
+                case "get":
 
                     switch (object) {
                         case "knight":
@@ -451,14 +482,23 @@ class TextArchive {
                             return "You do not fit the armor, so it will not do you any good.";
 
                         case "sword":
+                            if (!gameWorld.getRoom4KnightActivated().equals("activated")) {
+                                if (gameWorld.hallway.getArrayList().contains(gameWorld.sword)) {
 
-                            if (gameWorld.hallway.getArrayList().contains(gameWorld.sword)) {
+                                    gameWorld.hallway.removeItem(gameWorld.sword);
+                                    gameWorld.sir.getInventoryArray().add(gameWorld.sword);
+                                    return "You took his sword! It is a bit heavy, but its a powerful sword. You gained 2 Strength Points!";
+                                } else {
+                                    return "You already took your fathers sword.";
+                                }
+                            }
+                            else {
+                                if (gameWorld.hallway.getArrayList().contains(gameWorld.sword)) {
 
-                                gameWorld.hallway.removeItem(gameWorld.sword);
-                                gameWorld.sir.getInventoryArray().add(gameWorld.sword);
-                                return "You took his sword! It is a bit heavy, but its a powerful sword. You gained 2 Strength Points!";
-                            } else {
-                                return "You already took your fathers sword.";
+                                    return "You cant take that, the knight has it!";
+                                } else {
+                                    return "You already took your fathers sword.";
+                                }
                             }
                     }
 
@@ -473,6 +513,8 @@ class TextArchive {
 
             switch (action) {
                 case "move":
+                case "walk":
+                case "go":
 
                     switch (object) {
                         case "north":
@@ -518,6 +560,7 @@ class TextArchive {
                     }
 
                 case "search":
+                case "look":
 
                     switch (object) {
 
@@ -535,8 +578,27 @@ class TextArchive {
 
                     }
                 case "take":
+                case "loot":
+                case "get":
 
-                    return "You cant do that";
+                    switch (object) {
+                        case "alcohol":
+                        case "booze":
+                        case "bottles":
+                        case "bottle":
+
+                            return "You do not want to poison yourself with that. You can not be sure what is inside the bottles!";
+                            
+                        case "gold":
+                        case "coins":
+                        case "coin":
+                        case "money":
+                            
+                            return "You have no need for gold";
+
+                        default:
+                            return "You cant do that";
+                    }
 
                 default:
 
@@ -549,6 +611,8 @@ class TextArchive {
 
             switch (action) {
                 case "move":
+                case "walk":
+                case "go":
 
                     switch (object) {
                         case "north":
@@ -582,6 +646,7 @@ class TextArchive {
                     return "You cant do that";
 
                 case "search":
+                case "look":
 
                     switch (object) {
 
@@ -603,11 +668,13 @@ class TextArchive {
                         case "table":
                             return "You look at the giant book which is on the pedistal next to the table.\n"
                                     + "It must have at least 2000 pages in it. The cover reads \"Magic for dummies: Get fit!\".\n"
-                                    + "On the table you see a little key. That must be the key to the throneroom!";
+                                    + "On the table you see a little key under a book. That must be the key to the throneroom!";
 
                     }
 
                 case "take":
+                case "loot":
+                case "get":
 
                     switch (object) {
 
@@ -643,6 +710,8 @@ class TextArchive {
 
             switch (action) {
                 case "move":
+                case "walk":
+                case "go":
 
                     switch (object) {
                         case "north":
@@ -713,10 +782,13 @@ class TextArchive {
                     return "You cant do that";
 
                 case "search":
+                case "look":
 
                     return "You cant do that";
 
                 case "take":
+                case "loot":
+                case "get":
 
                     return "You cant do that";
 
