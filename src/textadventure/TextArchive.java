@@ -382,12 +382,12 @@ class TextArchive {
 
                     switch (object) {
                         case "north":
-
-                            if (gameWorld.sir.getInventoryArray().contains(gameWorld.throne) && !gameWorld.getRoom4KnightActivated().equals("activated")) {
-                                gameWorld.setHeroPosition(7);
-                                return room7IntroText;
-                            } else if (gameWorld.getRoom4KnightActivated().equals("activated")) {
+                            if (gameWorld.getRoom4KnightActivated().equals("activated")) {
                                 return "You cant get past the knight, you must defeat him!";
+                            }
+                            else if (gameWorld.sir.getInventoryArray().contains(gameWorld.throne)) {
+                                gameWorld.setHeroPosition(7);
+                                return room7IntroText;                            
                             } else {
                                 return "The door is locked! It opens to the throneroom and the chances are that your father is held captive in there. "
                                         + "You need to find a way in!";
@@ -438,7 +438,9 @@ class TextArchive {
                                 return "You try to fight the living armor, but it is too fast and too strong for you."
                                         + "You are pummeled to death";
                             } else if (gameWorld.sir.getHeroStrenght() >= livingArmorStrength) {
+                                gameWorld.setRoom4KnightActivated("defeated");
                                 return "It lashes out against you, but you dodge quickly, and tackles it afterwards. The armor falls apart and now lies in a big pile of rusty metal!";
+
                             }
 
                         case "defeated":
@@ -491,8 +493,7 @@ class TextArchive {
                                 } else {
                                     return "You already took your fathers sword.";
                                 }
-                            }
-                            else {
+                            } else {
                                 if (gameWorld.hallway.getArrayList().contains(gameWorld.sword)) {
 
                                     return "You cant take that, the knight has it!";
@@ -588,12 +589,12 @@ class TextArchive {
                         case "bottle":
 
                             return "You do not want to poison yourself with that. You can not be sure what is inside the bottles!";
-                            
+
                         case "gold":
                         case "coins":
                         case "coin":
                         case "money":
-                            
+
                             return "You have no need for gold";
 
                         default:
